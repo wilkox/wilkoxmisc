@@ -7,12 +7,13 @@ do.PCoA <- function(DistanceMatrix) {
   }
   
   #Do the PCoA
-  PCoA <- cmdscale(UniFrac, k = 2, eig = TRUE)
+  PCoA <- cmdscale(DistanceMatrix, k = 2, eig = TRUE)
 
   #Convert PCoA output to dataframe
   DF <- data.frame(Sample = row.names(PCoA$points), PCoA1 = PCoA$points[,1], PCoA2 = PCoA$points[,2], row.names = NULL)
 
   #Get variance explained
+  #Calculation from http://r-sig-ecology.471788.n2.nabble.com/Variability-explanations-for-the-PCO-axes-as-in-Anderson-and-Willis-2003-td6429547.html
   Eigenvalues <- eigenvals(PCoA) 
   VarianceExplained <- Eigenvalues / sum(Eigenvalues) 
   VarianceExplained1 <- 100 * signif(VarianceExplained[1], 2)
