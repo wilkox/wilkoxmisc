@@ -19,7 +19,7 @@ collapse.taxa.table <- function (TaxaTable, Rank = "Phylum", n = 8, Groups = c("
   TopTaxa <- TopTaxa[1:ifelse(MergeMinorUnclassified, n - 1, n - 2)]
 
   #Replace unclassified with "Unclassified", if requested
-  message("Replace unclassified with "Unclassified", if requested...")
+  message("Replace unclassified with 'Unclassified', if requested...")
   if (! MergeMinorUnclassified) {
     TaxaTable[[Rank]] <- ifelse(TaxaTable[[Rank]] == "", "Unclassified", as.character(TaxaTable[[Rank]]))
     TopTaxa <- c(TopTaxa, "Unclassified")
