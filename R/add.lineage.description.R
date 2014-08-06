@@ -1,6 +1,6 @@
 add.lineage.description <- function(OTU) {
 
-    #Check if a taxon is functionally blank
+    #Function to if a taxon is functionally blank
     is.blank <- function(Taxon) {
         if (is.na(Taxon)) {
             return(TRUE)
@@ -13,7 +13,8 @@ add.lineage.description <- function(OTU) {
 
     #If species exists, return binomial
     if (! is.blank(OTU["Species"])) {
-        return(paste(as.character(OTU$Genus), as.character(OTU$Species)))
+        OTU$Description <- paste(as.character(OTU$Genus), as.character(OTU$Species))
+        return(OTU)
     }
 
     #Identify the deepest rank for which there is taxonomic information
@@ -34,5 +35,6 @@ add.lineage.description <- function(OTU) {
     DeepestRank <- deepest.rank(Ranks, OTU)
 
     #Return deepest rank
-    return(paste0(DeepestRank, ": ", OTU[[DeepestRank]]))
+    OTU$Description <- paste0(DeepestRank, ": ", OTU[[DeepestRank]])
+    return(OTU)
 }
