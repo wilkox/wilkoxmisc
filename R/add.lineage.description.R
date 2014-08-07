@@ -1,4 +1,4 @@
-add.lineage.description <- function(OTU) {
+add.lineage.description <- function(OTU, add_OTU = TRUE) {
 
     #Function to if a taxon is functionally blank
     is.blank <- function(Taxon) {
@@ -14,6 +14,9 @@ add.lineage.description <- function(OTU) {
     #If species exists, return binomial
     if (! is.blank(OTU["Species"])) {
         OTU$Description <- paste(as.character(OTU$Genus), as.character(OTU$Species))
+        if (add_OTU) {
+            OTU$Description <- paste0(OTU$Description, " (", OTU$OTU, ")")
+        }
         return(OTU)
     }
 
@@ -36,5 +39,8 @@ add.lineage.description <- function(OTU) {
 
     #Return deepest rank
     OTU$Description <- paste0(DeepestRank, ": ", OTU[[DeepestRank]])
+    if (add_OTU) {
+        OTU$Description <- paste0(OTU$Description, " (", OTU$OTU, ")")
+    }
     return(OTU)
 }
