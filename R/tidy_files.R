@@ -1,9 +1,10 @@
-#' Load a data frame from a file in ``tidy'' format.
+#' @title Load a data frame from a file in "tidy" format.
 #'
-#' See http://vita.had.co.nz/papers/tidy-data.pdf for more info on ``tidy data''.
+#' @description
+#' See http://vita.had.co.nz/papers/tidy-data.pdf for more info on "tidy data".
 #'
 #' @param file the name of the file data will be read from
-#' @param ... further arguments to be passed to ``read.csv''
+#' @param ... further arguments to be passed to "read.csv"
 read.tidy <- function (file, ...) {
     df <- read.csv(file, head = TRUE, row.names = NULL, sep = "\t", check.names = FALSE, ...)
     return(df)
