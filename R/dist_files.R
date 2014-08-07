@@ -1,6 +1,7 @@
 #' @title Read and write dist objects to file
 #' @rdname dist_files
 #' @family dist_files
+#' @export
 #'
 #' @description
 #' Read or write an object of type "dist" from/to file.
@@ -17,6 +18,7 @@ read.dist <- function (file, ...)
 
 #' @rdname dist_files
 #' @family dist_files
+#' @export
 write.dist <- function (dist, file, ...) {
     Matrix <- as.matrix(dist)
     write.table(Matrix, file, quote = FALSE, col.names = NA, 

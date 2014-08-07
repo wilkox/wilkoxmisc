@@ -1,6 +1,7 @@
 #' @title Read and write data in tidy format
 #' @rdname tidy_files
 #' @family tidy_files
+#' @export
 #'
 #' @description
 #' "read.tidy" and "read.tidy.dt" read tidy data from a file into a data frame or data table, respectively.
@@ -19,11 +20,13 @@ read.tidy <- function (file, ...) {
 }
 #' @rdname tidy_files
 #' @family tidy_files
+#' @export
 read.tidy.dt <- function(file, ...) {
     return(data.table(read.tidy(file, ...)))
 }
 #' @rdname tidy_files
 #' @family tidy_files
+#' @export
 write.tidy <- function (data, file) {
 
     if (is.matrix(data)) {

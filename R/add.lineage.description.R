@@ -1,4 +1,5 @@
 #' @title Add a lineage discription to an OTU
+#' @export
 #'
 #' @description
 #' Takes a named vector (assumed to be a row from a data frame with columns "OTU", "Kingdom", "Phylum", "Class" etc.) and constructs a human-readable lineage description.

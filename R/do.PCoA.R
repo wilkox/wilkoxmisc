@@ -1,4 +1,5 @@
 #' @title Perform PCoA on a distance matrix
+#' @export
 #'
 #' @description
 #'

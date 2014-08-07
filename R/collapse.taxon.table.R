@@ -1,4 +1,5 @@
 #' @title Collapse a taxon table
+#' @export
 #'
 #' @description
 #'
@@ -60,6 +61,7 @@ collapse.taxon.table <- function (TaxonTable, Rank = "Phylum", n = 8, Groups = c
 }
 
 #' @title Synonym for "collapse.taxon.table"
+#' @export
 #' @description Synonym for "collapse.taxon.table"; deprecated.
 collapse.taxa.table <- function(...) {
     warning("collapse.taxa.table is deprecated; use collapse.taxon.table instead")

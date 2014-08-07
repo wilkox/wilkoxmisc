@@ -1,6 +1,7 @@
 #' @title Add relative abundance to an OTU table
 #' @rdname add_relative_abundance
 #' @family add_relative_abundance
+#' @export
 #'
 #' @description
 #' Takes an OTU table in tidy format, i.e. with at least "Sample", "OTU" and "Count" columns.
@@ -14,6 +15,7 @@ add.relative.abundance <- function(OTUTable) {
 }
 #' @rdname add_relative_abundance
 #' @family add_relative_abundance
+#' @export
 add.relative.abundance.dt <- function(OTUTable) {
   setkey(OTUTable, Sample)
   return(OTUTable[, RelativeAbundance := (100 * Count) / sum(Count), by = list(Sample)])

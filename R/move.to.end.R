@@ -1,4 +1,5 @@
 #' @title Move a factor level to the end of the factor
+#' @export
 #'
 #' @description
 #'
