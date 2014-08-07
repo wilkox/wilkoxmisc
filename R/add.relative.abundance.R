@@ -8,3 +8,8 @@
 add.relative.abundance <- function(OTUTable) {
   return(ddply(OTUTable, .(Sample), mutate, RelativeAbundance = (100 * Count) / sum(Count), .progress = 'time'))
 }
+
+add.relative.abundance.dt <- function(OTUTable) {
+  setkey(OTUTable, Sample)
+  return(OTUTable[, RelativeAbundance := (100 * Count) / sum(Count), by = list(Sample)])
+}
