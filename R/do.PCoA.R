@@ -1,3 +1,17 @@
+#' @title Perform PCoA on a distance matrix
+#'
+#' @description
+#'
+#' Takes a distance matrix (an object of type "dist") and performs a PCoA ordination using the "cmdscale" function from vegan, for two dimensions (k = 2).
+#' Returns a list with "Coordinates", a data frame of the calculated PCoA coordinates; and "Variance1" and "Variance2", the percentage variance explained by the first and second PCoA axes respectively.
+#'
+#' The method for calculating variance explained comes from \url{http://r-sig-ecology.471788.n2.nabble.com/Variability-explanations-for-the-PCO-axes-as-in-Anderson-and-Willis-2003-td6429547.html}.
+#'
+#' @param DistanceMatrix an object of type "dist", containing the distances between samples.
+#'
+#' @seealso dist for info on the dist type
+#' @seealso read.dist to read distance matrices from files (e.g. UniFrac distances)
+#' @seealso cmdscale the vegan function that performs the actual ordination
 do.PCoA <- function(DistanceMatrix) {
 
   #Return error if distance matrix is not a distance matrix
