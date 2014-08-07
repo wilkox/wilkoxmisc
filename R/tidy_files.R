@@ -1,27 +1,29 @@
-#' @title Load a data frame from a file in "tidy" format.
+#' @title Read and write data in tidy format
+#' @rdname tidy_files
+#' @family tidy_files
 #'
 #' @description
-#' See http://vita.had.co.nz/papers/tidy-data.pdf for more info on "tidy data".
+#' "read.tidy" and "read.tidy.dt" read tidy data from a file into a data frame or data table, respectively.
+#'
+#' "write.tidy" writes a data frame, data table or matrix to file in tidy format.
+#'
+#' These functions are just convenience wrappers for the appropriate base R functions, with arguments set for tidy-formatted files. 
+#'
+#' See \url{http://vita.had.co.nz/papers/tidy-data.pdf} for more info on tidy data.
 #'
 #' @param file path of the file data will be read from
+#' @param data data frame to be written
 #' @param ... further arguments to be passed to "read.csv"
-#'
-#' @seealso "write.tidy", to write data frames in tidy format
-#' @seealso "read.tidy.dt", read.tidy for data tables
 read.tidy <- function (file, ...) {
     return(read.csv(file, head = TRUE, row.names = NULL, sep = "\t", check.names = FALSE, ...))
 }
-
-#' @title Write a data frame or matrix to file in "tidy" format.
-#'
-#' @description
-#' See http://vita.had.co.nz/papers/tidy-data.pdf for more info on "tidy data".
-#'
-#' @param data data frame to write
-#' @param file path of the file data will be written to
-#'
-#' @seealso "read.tidy", to read data frames in tidy format
-#' @seealso "read.tidy.dt", read.tidy for data tables
+#' @rdname tidy_files
+#' @family tidy_files
+read.tidy.dt <- function(file, ...) {
+    return(data.table(read.tidy(file, ...)))
+}
+#' @rdname tidy_files
+#' @family tidy_files
 write.tidy <- function (data, file) {
 
     if (is.matrix(data)) {
@@ -30,18 +32,4 @@ write.tidy <- function (data, file) {
     } else {
         write.table(data, file, quote = FALSE, sep = "\t", row.names = FALSE)
     }
-}
-
-#' @title Load a data table from a file in "tidy" format.
-#'
-#' @description
-#' See http://vita.had.co.nz/papers/tidy-data.pdf for more info on "tidy data".
-#'
-#' @param file path of the file data will be read from
-#' @param ... further arguments to be passed to "read.csv"
-#'
-#' @seealso "write.tidy", to write data frames in tidy format
-#' @seealso "read.tidy", read.tidy for data frames
-read.tidy.dt <- function(Path) {
-    return(data.table(read.tidy(Path)))
 }
