@@ -1,3 +1,13 @@
+#' @title Add a lineage discription to an OTU
+#'
+#' @description
+#' Takes a named vector (assumed to be a row from a data frame with columns "OTU", "Kingdom", "Phylum", "Class" etc.) and constructs a human-readable lineage description.
+#' It will try to use the binomial if possible.
+#' Returns the input vector, with an additional "Description" element.
+#'
+#' @param OTU named vector
+#' @param add_OTU add the OTU name in brackets to the end of the description.
+#'
 add.lineage.description <- function(OTU, add_OTU = TRUE) {
 
     #Function to if a taxon is functionally blank
