@@ -11,47 +11,56 @@
 #'
 add.lineage.description <- function(OTU, add_OTU = TRUE) {
 
-    #Function to if a taxon is functionally blank
-    is.blank <- function(Taxon) {
-        if (is.na(Taxon)) {
-            return(TRUE)
-        } else if (Taxon == "") {
-            return(TRUE)
-        } else {
-            return(FALSE)
-        }
-    }
+  #If species exists, return binomial
+  if (! is.blank(OTU["Species"])) {
+    OTU$Description <- paste(as.character(OTU$Genus), as.character(OTU$Species))
+      if (add_OTU) {
+        OTU$Description <- paste0(OTU$Description, " (", OTU$OTU, ")")
+      }
+    return(OTU)
+  }
 
-    #If species exists, return binomial
-    if (! is.blank(OTU["Species"])) {
-        OTU$Description <- paste(as.character(OTU$Genus), as.character(OTU$Species))
-        if (add_OTU) {
-            OTU$Description <- paste0(OTU$Description, " (", OTU$OTU, ")")
-        }
-        return(OTU)
-    }
+  #Identify the deepest rank for which there is taxonomic information
+  DeepestRank <- deepest.rank(OTU)
 
-    #Identify the deepest rank for which there is taxonomic information
-    Ranks <- c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")
-    deepest.rank <- function(Ranks, OTU) {
-        Rank <- Ranks[length(Ranks)]
-        Taxon <- OTU[Rank]
-        if (is.blank(Taxon)) {
-            if (length(Ranks) == 1) {
-                return(FALSE)
-            } else {
-                return(deepest.rank(Ranks[1:length(Ranks) - 1], OTU))
-            }
-        } else {
-            return(Rank)
-        }
-    }
-    DeepestRank <- deepest.rank(Ranks, OTU)
-
-    #Return deepest rank
+#Return deepest rank
     OTU$Description <- paste0(DeepestRank, ": ", OTU[[DeepestRank]])
     if (add_OTU) {
-        OTU$Description <- paste0(OTU$Description, " (", OTU$OTU, ")")
+      OTU$Description <- paste0(OTU$Description, " (", OTU$OTU, ")")
     }
-    return(OTU)
+  return(OTU)
+}
+
+#' @title Identify the deepest rank for which there is taxonomic information
+#' @export
+#'
+#' @description
+#' Takes a named vector (assumed to be a row from a data frame with columns "OTU", "Kingdom", "Phylum", "Class" etc.) and returns the name of the deepest rank with taxonomic information.
+#'
+#' @param OTU named vector
+#' @param Ranks vector with names of ranks to look for, in order
+#'
+deepest.rank <- function(OTU, Ranks = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")) {
+  Rank <- Ranks[length(Ranks)]
+  if (! Rank %in% names(OTU) || is.blank(OTU[Rank])) {
+    if (length(Ranks) == 1) {
+      return(FALSE)
+    } else {
+      return(deepest.rank(Ranks[1:length(Ranks) - 1], OTU))
+    }
+  } else {
+    return(Rank)
+  }
+}
+
+#Function to check if a taxon is functionally blank
+#' @keywords internal
+is.blank <- function(Taxon) {
+  if (is.na(Taxon)) {
+    return(TRUE)
+  } else if (Taxon == "") {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
 }
