@@ -8,7 +8,6 @@
 #'
 #' @param OTU named vector
 #' @param add_OTU add the OTU name in brackets to the end of the description.
-#'
 add.lineage.description <- function(OTU, add_OTU = TRUE) {
 
   #If species exists, return binomial
@@ -23,11 +22,11 @@ add.lineage.description <- function(OTU, add_OTU = TRUE) {
   #Identify the deepest rank for which there is taxonomic information
   DeepestRank <- deepest.rank(OTU)
 
-#Return deepest rank
-    OTU$Description <- paste0(DeepestRank, ": ", OTU[[DeepestRank]])
-    if (add_OTU) {
-      OTU$Description <- paste0(OTU$Description, " (", OTU$OTU, ")")
-    }
+  #Return deepest rank
+  OTU$Description <- paste0(DeepestRank, ": ", OTU[[DeepestRank]])
+  if (add_OTU) {
+    OTU$Description <- paste0(OTU$Description, " (", OTU$OTU, ")")
+  }
   return(OTU)
 }
 
