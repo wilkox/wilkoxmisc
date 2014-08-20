@@ -35,7 +35,7 @@ collapse.taxon.table <- function (TaxonTable, Rank = "Phylum", n = 8, MergeMinor
 
   #Omit unclassified taxa
   message("Omit unclassified taxa...")
-  TopTaxa <- TopTaxa[which(TopTaxa[Rank] %in% UnclassifiedTerms), ]
+  TopTaxa <- TopTaxa[which(! TopTaxa[[Rank]] %in% UnclassifiedTerms), ]
 
   #Select top taxa
   message("Select top taxa...")
