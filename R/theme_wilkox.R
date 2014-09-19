@@ -3,8 +3,9 @@
 #'
 #' @usage Plot + theme_wilkox()
 theme_wilkox <- function() {
-  theme_classic(base_size = 8, base_family = "Helvetica") %+replace% theme(
+  theme_bw(base_size = 8, base_family = "Helvetica") %+replace% theme(
     panel.grid = element_blank(),
+    panel.border = element_blank(),
     axis.line = element_line(lineend = "square"),
     axis.ticks.length = unit(1, "mm"),
     axis.title.x = element_text(vjust = 0),
@@ -12,8 +13,8 @@ theme_wilkox <- function() {
     axis.text = element_text(size = 6),
     legend.background = element_blank(),
     legend.key = element_blank(),
+    legend.text = element_text(lineheight = 4, size = 6),
     legend.position = "bottom",
-    legend.title = element_blank(),
     legend.margin = unit(-6, "mm"),
     strip.background = element_blank(),
     strip.text = element_text(face = "italic")
