@@ -3,16 +3,19 @@
 \alias{add.lineage.description}
 \title{Add a lineage discription to an OTU}
 \usage{
-add.lineage.description(OTU, add_OTU = TRUE)
+add.lineage.description(OTUTable, add_OTU = TRUE,
+  italicise_binomials = NULL)
 }
 \arguments{
-\item{OTU}{named vector}
+\item{OTUTable}{data frame with at least an "OTU" column and at least one taxonomic rank column}
 
-\item{add_OTU}{add the OTU name in brackets to the end of the description.}
+\item{add_OTU}{add the OTU name to the description}
+
+\item{italicise_binomials}{if set to "markdown" or "md", will wrap binomials in asterisks so they appear italicised in markdown output}
 }
 \description{
-Takes a named vector (assumed to be a row from a data frame with columns "OTU", "Kingdom", "Phylum", "Class" etc.) and constructs a human-readable lineage description.
+Takes a data frame with columns "OTU", "Kingdom", "Phylum", "Class" etc. and constructs a human-readable lineage description.
 It will try to use the binomial if possible.
-Returns the input vector, with an additional "Description" element.
+Returns the data frame, with an additional "Description" column.
 }
 
