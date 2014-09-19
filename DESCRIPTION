@@ -11,5 +11,6 @@ Depends:
     plyr (>= 1.3),
     data.table,
     ggplot2,
-    vegan
+    vegan,
+    grid
 License: GPL version 3 or newer
