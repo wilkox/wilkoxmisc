@@ -13,7 +13,7 @@ theme_wilkox <- function() {
     axis.text = element_text(size = 8, family = "Helvetica-Narrow", face = "bold"),
     legend.background = element_blank(),
     legend.key = element_blank(),
-    legend.text = element_text(lineheight = 4, size = 8),
+    legend.text = element_text(lineheight = 4, size = 8, family = "Helvetica-Narrow", face = "bold"),
     legend.margin = unit(-6, "mm"),
     strip.background = element_blank(),
     strip.text = element_text(face = "italic")
