@@ -2,6 +2,7 @@
 #' @export
 #'
 #' @usage Plot + theme_wilkox()
+#' Plot + theme_wilkox() \%+replace\% theme(...)
 theme_wilkox <- function() {
   theme_bw(base_size = 8, base_family = "Helvetica") %+replace% theme(
     panel.grid = element_blank(),
