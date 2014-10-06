@@ -15,6 +15,7 @@ theme_wilkox <- function() {
     legend.background = element_blank(),
     legend.key = element_blank(),
     legend.text = element_text(lineheight = 4, size = 8, family = "Helvetica-Narrow", face = "bold"),
+    legend.title = element_text(lineheight = 4, size = 8, family = "Helvetica", face = "bold"),
     legend.margin = unit(-6, "mm"),
     strip.background = element_blank(),
     strip.text = element_text(face = "italic")
