@@ -31,10 +31,14 @@ add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomial
   #Identify the deepest rank for which there is taxonomic information
   DeepestRank <- deepest.rank(OTUTable)
 
-  #Return deepest rank
-  OTUTable$Description <- paste0(DeepestRank, ": ", OTUTable[[DeepestRank]])
-  if (add_OTU) {
-    OTUTable$Description <- paste0(OTUTable$Description, " (", OTUTable$OTU, ")")
+  #Return deepest rank if there is one, blank if not
+  if (! is.na(DeepestRank)) {
+    OTUTable$Description <- paste0(DeepestRank, ": ", OTUTable[[DeepestRank]])
+    if (add_OTU) {
+      OTUTable$Description <- paste0(OTUTable$Description, " (", OTUTable$OTU, ")")
+    }
+  } else {
+    OTUTable$Description <- "" 
   }
   return(OTUTable)
 }
@@ -52,7 +56,7 @@ deepest.rank <- function(OTU, Ranks = c("Kingdom", "Phylum", "Class", "Order", "
   Rank <- Ranks[length(Ranks)]
   if (! Rank %in% names(OTU) || is.blank(OTU[Rank])) {
     if (length(Ranks) == 1) {
-      return(FALSE)
+      return(NA)
     } else {
       return(deepest.rank(Ranks[1:length(Ranks) - 1], OTU))
     }
