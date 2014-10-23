@@ -12,5 +12,6 @@ Depends:
     data.table,
     ggplot2,
     vegan,
-    grid
+    grid,
+    knitr
 License: GPL version 3 or newer
