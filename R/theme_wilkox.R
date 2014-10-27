@@ -22,7 +22,7 @@ theme_wilkox <- function() {
     legend.background = element_blank(),
     legend.key = element_blank(),
     legend.text = element_text(lineheight = 4, size = 10, family = CondensedFont),
-    legend.title = element_text(lineheight = 4, size = 8, family = RegularFont),
+    legend.title = element_text(lineheight = 4, size = 8, family = BoldFont),
     legend.margin = unit(-6, "mm"),
     strip.background = element_blank(),
     strip.text = element_text(size = 8, family = BoldFont)
