@@ -13,5 +13,6 @@ Depends:
     ggplot2,
     vegan,
     grid,
-    knitr
+    knitr,
+    extrafont
 License: GPL version 3 or newer
