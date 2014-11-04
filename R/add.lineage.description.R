@@ -36,7 +36,15 @@ add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomial
 
   #Return deepest rank if there is one, blank if not
   if (! is.na(DeepestRank)) {
-    OTUTable$Description <- paste0(DeepestRank, ": ", OTUTable[[DeepestRank]])
+    Taxon <- OTUTable[[DeepestRank]]
+    if (DeepestRank == "Genus") {
+      if (italicise_binomials == "markdown" | italicise_binomials == "md") {
+        Taxon <- paste0("*", Taxon, "*")
+      } else if (italicise_binomials == "escaped_latex") {
+        Taxon <- paste0("\\textit{", Taxon, "}")
+      }
+    }
+    OTUTable$Description <- paste0(DeepestRank, ": ", Taxon)
     if (add_OTU) {
       OTUTable$Description <- paste0(OTUTable$Description, " (", OTUTable$OTU, ")")
     }
