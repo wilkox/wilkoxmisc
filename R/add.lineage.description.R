@@ -9,7 +9,7 @@
 #' @param OTUTable data frame with at least an "OTU" column and at least one taxonomic rank column
 #' @param add_OTU add the OTU name to the description
 #' @param italicise_binomials if set to "markdown" or "md", will wrap binomials in asterisks so they appear italicised in markdown output
-add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomials = NULL) {
+add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomials = "none") {
 
   #Operate row-by-row
   if (nrow(OTUTable) > 1) {

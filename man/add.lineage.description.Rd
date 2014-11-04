@@ -4,7 +4,7 @@
 \title{Add a lineage discription to an OTU}
 \usage{
 add.lineage.description(OTUTable, add_OTU = TRUE,
-  italicise_binomials = NULL)
+  italicise_binomials = "none")
 }
 \arguments{
 \item{OTUTable}{data frame with at least an "OTU" column and at least one taxonomic rank column}
