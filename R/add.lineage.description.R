@@ -8,7 +8,8 @@
 #'
 #' @param OTUTable data frame with at least an "OTU" column and at least one taxonomic rank column
 #' @param add_OTU add the OTU name to the description
-#' @param italicise_binomials if set to "markdown" or "md", will wrap binomials in asterisks so they appear italicised in markdown output
+#' @param italicise_binomials if set to "markdown" or "md", will wrap binomials in asterisks so they appear italicised in markdown 
+#' output. If set to "escaped_latex", will wrap binomials in escaped "\textit{}"s.
 add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomials = "none") {
 
   #Operate row-by-row
@@ -21,6 +22,8 @@ add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomial
     OTUTable$Description <- paste(as.character(OTUTable$Genus), as.character(OTUTable$Species))
     if (italicise_binomials == "markdown" | italicise_binomials == "md") {
       OTUTable$Description <- paste0("*", OTUTable$Description, "*")
+    } else if (italicise_binomials == "escaped_latex") {
+      OTUTable$Description <- paste0("\\textit{", OTUTable$Description, "}")
     }
     if (add_OTU) {
       OTUTable$Description <- paste0(OTUTable$Description, " (", OTUTable$OTU, ")")

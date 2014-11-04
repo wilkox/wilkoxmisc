@@ -11,7 +11,8 @@ add.lineage.description(OTUTable, add_OTU = TRUE,
 
 \item{add_OTU}{add the OTU name to the description}
 
-\item{italicise_binomials}{if set to "markdown" or "md", will wrap binomials in asterisks so they appear italicised in markdown output}
+\item{italicise_binomials}{if set to "markdown" or "md", will wrap binomials in asterisks so they appear italicised in markdown
+output. If set to "escaped_latex", will wrap binomials in escaped "\textit{}"s.}
 }
 \description{
 Takes a data frame with columns "OTU", "Kingdom", "Phylum", "Class" etc. and constructs a human-readable lineage description.
