@@ -4,12 +4,14 @@
 \alias{add.relative.abundance.dt}
 \title{Add relative abundance to an OTU table}
 \usage{
-add.relative.abundance(OTUTable)
+add.relative.abundance(OTUTable, silent = FALSE)
 
 add.relative.abundance.dt(OTUTable)
 }
 \arguments{
 \item{OTUTable}{the OTU table, which must be a tidy data frame or data table with at least "Sample", "OTU" and "Count" columns}
+
+\item{silent}{suppress messages}
 }
 \description{
 Takes an OTU table in tidy format, i.e. with at least "Sample", "OTU" and "Count" columns.

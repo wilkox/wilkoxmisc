@@ -4,7 +4,8 @@
 \title{Collapse a taxon table}
 \usage{
 collapse.taxon.table(TaxonTable, Rank = "Phylum", n = 8,
-  MergeMinorUnclassified = TRUE, UnclassifiedTerms = c(""))
+  MergeMinorUnclassified = TRUE, UnclassifiedTerms = c(""),
+  silent = FALSE)
 }
 \arguments{
 \item{TaxonTable}{taxon table in tidy format, i.e. with columns for "Sample", "RelativeAbundance", and at least one rank. Use "add.relative.abundance" first if the table only contains counts.}
@@ -16,6 +17,8 @@ collapse.taxon.table(TaxonTable, Rank = "Phylum", n = 8,
 \item{MergeMinorUnclassified}{if set to FALSE, will keep minor and unclassified taxa as separate (but still collapsed) groups.}
 
 \item{UnclassifiedTerms}{taxa matching any of these terms will be considered unclassified.}
+
+\item{silent}{suppress messages}
 }
 \description{
 Takes a table of taxa, or OTUs with taxonomic information e.g. a "Phylum" column, and collapses the taxa of a specified rank which are not in the top n taxa for that rank.

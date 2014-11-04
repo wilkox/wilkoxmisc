@@ -17,48 +17,51 @@
 #' @param n the total number of groups following the collapse, including any "Minor" and "Unclassified" groups.
 #' @param MergeMinorUnclassified if set to FALSE, will keep minor and unclassified taxa as separate (but still collapsed) groups.
 #' @param UnclassifiedTerms taxa matching any of these terms will be considered unclassified.
-collapse.taxon.table <- function (TaxonTable, Rank = "Phylum", n = 8, MergeMinorUnclassified = TRUE, UnclassifiedTerms = c("")) {
+#' @param silent suppress messages
+collapse.taxon.table <- function (TaxonTable, Rank = "Phylum", n = 8, MergeMinorUnclassified = TRUE, UnclassifiedTerms = c(""), silent = FALSE) {
+
+  Progress <- ifelse(silent, "none", "time")
 
   #Collapse relative abundance by taxon and group
-  message("Collapse relative abundance by taxon and group...")
-  TaxonTable <- ddply(TaxonTable, c("Sample", Rank), summarise, RelativeAbundance = sum(RelativeAbundance), .progress = "time")
+  if (! silent) { message("Collapse relative abundance by taxon and group...") }
+  TaxonTable <- ddply(TaxonTable, c("Sample", Rank), summarise, RelativeAbundance = sum(RelativeAbundance), .progress = Progress)
 
   #Cast and melt to ensure fully crossed
-  message("Casting and melting to ensure table is fully crossed...")
+  if (! silent) { message("Casting and melting to ensure table is fully crossed...") }
   TaxonTable <- dcast(TaxonTable, as.formula(paste(Rank, "~ Sample")), value.var = "RelativeAbundance", fill = 0)
   TaxonTable <- melt(TaxonTable, id.var = Rank, variable.name = "Sample", value.name = "RelativeAbundance")
 
   #Summarise taxa by relative abundance and sort
-  message("Summarise taxa by relative abundance and sort...")
-  TopTaxa <- ddply(TaxonTable, c(Rank), summarise, RelativeAbundance = mean(RelativeAbundance), .progress = "time")
+  if (! silent) { message("Summarise taxa by relative abundance and sort...") }
+  TopTaxa <- ddply(TaxonTable, c(Rank), summarise, RelativeAbundance = mean(RelativeAbundance), .progress = Progress)
   TopTaxa <- arrange(TopTaxa, desc(RelativeAbundance))
 
   #Omit unclassified taxa
-  message("Omit unclassified taxa...")
+  if (! silent) { message("Omit unclassified taxa...") }
   TopTaxa <- TopTaxa[which(! TopTaxa[[Rank]] %in% UnclassifiedTerms), ]
 
   #Select top taxa
-  message("Select top taxa...")
+  if (! silent) { message("Select top taxa...") }
   TopTaxa <- as.character(TopTaxa[[Rank]])
   TopTaxa <- TopTaxa[1:ifelse(MergeMinorUnclassified, n - 1, n - 2)]
 
   #Replace unclassified with "Unclassified", if requested
-  message("Replace unclassified with 'Unclassified', if requested...")
+  if (! silent) { message("Replace unclassified with 'Unclassified', if requested...") }
   if (! MergeMinorUnclassified) {
     TaxonTable[[Rank]] <- ifelse(TaxonTable[[Rank]] %in% UnclassifiedTerms, "Unclassified", as.character(TaxonTable[[Rank]]))
     TopTaxa <- c(TopTaxa, "Unclassified")
   }
 
   #Replace minor taxa with the minor name
-  message("Replace minor taxa with the minor name...")
+  if (! silent) { message("Replace minor taxa with the minor name...") }
   TaxonTable[[Rank]] <- ifelse(TaxonTable[[Rank]] %in% TopTaxa, as.character(TaxonTable[[Rank]]), ifelse(MergeMinorUnclassified, "Minor/Unclassified", "Minor"))
 
   #Collapse the table
-  message("Collapse the table...")
-  TaxonTable <- ddply(TaxonTable, c("Sample", Rank), summarise, RelativeAbundance = sum(RelativeAbundance), .progress = "time")
+  if (! silent) { message("Collapse the table...") }
+  TaxonTable <- ddply(TaxonTable, c("Sample", Rank), summarise, RelativeAbundance = sum(RelativeAbundance), .progress = Progress)
 
   #Refactorise the taxon and move collapse name(s) to end
-  message("Refactorise the taxon and move collapse name(s) to end...")
+  if (! silent) { message("Refactorise the taxon and move collapse name(s) to end...") }
   TaxonTable[Rank] <- factor(TaxonTable[[Rank]])
   if (MergeMinorUnclassified) {
     TaxonTable[[Rank]] <- move.to.end(TaxonTable[[Rank]], "Minor/Unclassified")
