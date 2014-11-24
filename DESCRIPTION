@@ -13,5 +13,6 @@ Depends:
     ggplot2,
     vegan,
     grid,
-    knitr
+    knitr,
+    reshape2
 License: GPL version 3 or newer
