@@ -14,7 +14,7 @@ add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomial
 
   #Operate row-by-row
   if (nrow(OTUTable) > 1) {
-    return(rbind(add.lineage.description(OTUTable[1,]), add.lineage.description(OTUTable[2:nrow(OTUTable), ])))  
+    return(rbind(add.lineage.description(OTUTable[1,], add_OTU, italicise_binomials), add.lineage.description(OTUTable[2:nrow(OTUTable), ], add_OTU, italicise_binomials)))  
   }
 
   #If species exists, return binomial
