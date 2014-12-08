@@ -14,6 +14,7 @@
 #'
 #' @param file path of the file data will be read from
 #' @param data data frame to be written
+#' @param row.names passed to write.csv
 #' @param ... further arguments to be passed to "read.csv" or "write.table"
 read.tidy <- function (file, ...) {
     return(read.csv(file, head = TRUE, row.names = NULL, sep = "\t", check.names = FALSE, ...))
@@ -27,12 +28,12 @@ read.tidy.dt <- function(file, ...) {
 #' @rdname tidy_files
 #' @family tidy_files
 #' @export
-write.tidy <- function (data, file, ...) {
+write.tidy <- function (data, file, row.names = FALSE, ...) {
 
     if (is.matrix(data)) {
-        write.table(data, file, quote = FALSE, col.names = NA, row.names = TRUE, sep = "\t", ...)
+        write.table(data, file, quote = FALSE, col.names = NA, row.names = row.names, sep = "\t", ...)
 
     } else {
-        write.table(data, file, quote = FALSE, sep = "\t", row.names = FALSE, ...)
+        write.table(data, file, quote = FALSE, sep = "\t", row.names = row.names, ...)
     }
 }

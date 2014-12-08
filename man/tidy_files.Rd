@@ -9,7 +9,7 @@ read.tidy(file, ...)
 
 read.tidy.dt(file, ...)
 
-write.tidy(data, file, ...)
+write.tidy(data, file, row.names = FALSE, ...)
 }
 \arguments{
 \item{file}{path of the file data will be read from}
@@ -17,6 +17,8 @@ write.tidy(data, file, ...)
 \item{...}{further arguments to be passed to "read.csv" or "write.table"}
 
 \item{data}{data frame to be written}
+
+\item{row.names}{passed to write.csv}
 }
 \description{
 "read.tidy" and "read.tidy.dt" read tidy data from a file into a data frame or data table, respectively.
