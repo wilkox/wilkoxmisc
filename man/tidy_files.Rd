@@ -9,12 +9,12 @@ read.tidy(file, ...)
 
 read.tidy.dt(file, ...)
 
-write.tidy(data, file)
+write.tidy(data, file, ...)
 }
 \arguments{
 \item{file}{path of the file data will be read from}
 
-\item{...}{further arguments to be passed to "read.csv"}
+\item{...}{further arguments to be passed to "read.csv" or "write.table"}
 
 \item{data}{data frame to be written}
 }
