@@ -1,23 +1,23 @@
-#' @title Add a lineage discription to an OTU
-#' @export
+#' @title Add a lineage discription to an OTU @export
 #'
-#' @description
-#' Takes a data frame with columns "OTU", "Kingdom", "Phylum", "Class" etc. and constructs a human-readable lineage description.
-#' It will try to use the binomial if possible.
-#' Returns the data frame, with an additional "Description" column.
+#' @description Takes a data frame with columns "OTU", "Kingdom", "Phylum",
+#' "Class" etc. and constructs a human-readable lineage description.  It will
+#' try to use the binomial if possible.  Returns the data frame, with an
+#' additional "Description" column.
 #'
-#' @param OTUTable data frame with at least an "OTU" column and at least one taxonomic rank column
-#' @param add_OTU add the OTU name to the description
-#' @param italicise_binomials if set to "markdown" or "md", will wrap binomials in asterisks so they appear italicised in markdown 
-#' output. If set to "escaped_latex", will wrap binomials in escaped "\textit{}"s.
+#' @param OTUTable data frame with at least an "OTU" column and at least one
+#' taxonomic rank column @param add_OTU add the OTU name to the description
+#' @param italicise_binomials if set to "markdown" or "md", will wrap
+#' binomials in asterisks so they appear italicised in markdown output. If
+#' set to "escaped_latex", will wrap binomials in escaped "\textit{}"s.
 add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomials = "none") {
 
-  #Operate row-by-row
+  # Operate row-by-row
   if (nrow(OTUTable) > 1) {
     return(rbind(add.lineage.description(OTUTable[1,], add_OTU, italicise_binomials), add.lineage.description(OTUTable[2:nrow(OTUTable), ], add_OTU, italicise_binomials)))  
   }
 
-  #If species exists, return binomial
+  # If species exists, return binomial
   if (! is.blank(OTUTable["Species"])) {
     OTUTable$Description <- paste(as.character(OTUTable$Genus), as.character(OTUTable$Species))
     if (italicise_binomials == "markdown" | italicise_binomials == "md") {
@@ -31,10 +31,10 @@ add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomial
     return(OTUTable)
   }
 
-  #Identify the deepest rank for which there is taxonomic information
+  # Identify the deepest rank for which there is taxonomic information
   DeepestRank <- deepest.rank(OTUTable)
 
-  #Return deepest rank if there is one, blank if not
+  # Return deepest rank if there is one, blank if not
   if (! is.na(DeepestRank)) {
     Taxon <- OTUTable[[DeepestRank]]
     if (DeepestRank == "Genus") {
@@ -49,7 +49,10 @@ add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomial
       OTUTable$Description <- paste0(OTUTable$Description, " (", OTUTable$OTU, ")")
     }
   } else {
-    OTUTable$Description <- "" 
+    OTUTable$Description <- "Unknown" 
+    if (add_OTU) {
+      OTUTable$Description <- paste0(OTUTable$Description, " (", OTUTable$OTU, ")")
+    }
   }
   return(OTUTable)
 }
