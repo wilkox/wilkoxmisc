@@ -4,14 +4,18 @@
 #' @export
 #'
 #' @description
-#' Takes an OTU table in tidy format, i.e. with at least "Sample", "OTU" and "Count" columns.
-#' Appends a "RelativeAbundance" column containing the relative abundance (expressed as a percentage) of each OTU within each sample.
+#' Takes an OTU table in tidy format, i.e. with at least "Sample", "OTU" and
+#' "Count" columns. Appends a "RelativeAbundance" column containing the
+#' relative abundance (expressed as a percentage) of each OTU within each
+#' sample.
 #' 
-#' "add.relative.abundance.dt" is significantly faster if the OTU table is in a data table.
+#' "add.relative.abundance.dt" is significantly faster if the OTU table is in
+#' a data table.
 #'
-#' @param OTUTable the OTU table, which must be a tidy data frame or data table with at least "Sample", "OTU" and "Count" columns
-#' @param silent suppress messages
-add.relative.abundance <- function(OTUTable, silent = FALSE) {
+#' @param OTUTable the OTU table, which must be a tidy data frame or data
+#' table with at least "Sample", "OTU" and "Count" columns
+#' @param silent suppress messages (defaults to true)
+add.relative.abundance <- function(OTUTable, silent = TRUE) {
   Progress <- ifelse(silent, "none", "time")
   return(ddply(OTUTable, .(Sample), mutate, RelativeAbundance = (100 * Count) / sum(Count), .progress = Progress))
 }

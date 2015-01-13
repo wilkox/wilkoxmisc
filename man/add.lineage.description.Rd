@@ -2,7 +2,7 @@
 % Please edit documentation in R/add.lineage.description.R
 \name{add.lineage.description}
 \alias{add.lineage.description}
-\title{Add a lineage discription to an OTU}
+\title{Add lineage descriptions to an OTU table}
 \usage{
 add.lineage.description(OTUTable, add_OTU = TRUE,
   italicise_binomials = "none")
@@ -11,7 +11,7 @@ add.lineage.description(OTUTable, add_OTU = TRUE,
 \item{OTUTable}{data frame with at least an "OTU" column and at least one
 taxonomic rank column}
 
-\item{add_OTU}{add the OTU name to the description}
+\item{add_OTU}{add the OTU name in parentheses after the description}
 
 \item{italicise_binomials}{if set to "markdown" or "md", will wrap
 binomials in asterisks so they appear italicised in markdown output. If

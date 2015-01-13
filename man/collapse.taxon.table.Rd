@@ -5,30 +5,39 @@
 \title{Collapse a taxon table}
 \usage{
 collapse.taxon.table(TaxonTable, Rank = "Phylum", n = 8,
-  MergeMinorUnclassified = TRUE, UnclassifiedTerms = c(""),
-  silent = FALSE)
+  MergeMinorUnclassified = TRUE, UnclassifiedTerms = c(""), silent = TRUE)
 }
 \arguments{
-\item{TaxonTable}{taxon table in tidy format, i.e. with columns for "Sample", "RelativeAbundance", and at least one rank. Use "add.relative.abundance" first if the table only contains counts.}
+\item{TaxonTable}{taxon table in tidy format, i.e. with columns for
+"Sample", "RelativeAbundance", and at least one rank. Use
+"add.relative.abundance" first if the table only contains counts.}
 
 \item{Rank}{the rank to collapse.}
 
-\item{n}{the total number of groups following the collapse, including any "Minor" and "Unclassified" groups.}
+\item{n}{the total number of groups following the collapse, including any
+"Minor" and "Unclassified" groups.}
 
-\item{MergeMinorUnclassified}{if set to FALSE, will keep minor and unclassified taxa as separate (but still collapsed) groups.}
+\item{MergeMinorUnclassified}{if set to FALSE, will keep minor and
+unclassified taxa as separate (but still collapsed) groups.}
 
-\item{UnclassifiedTerms}{taxa matching any of these terms will be considered unclassified.}
+\item{UnclassifiedTerms}{taxa matching any of these terms will be
+considered unclassified.}
 
-\item{silent}{suppress messages}
+\item{silent}{suppress messages (defaults to true)}
 }
 \description{
-Takes a table of taxa, or OTUs with taxonomic information e.g. a "Phylum" column, and collapses the taxa of a specified rank which are not in the top n taxa for that rank.
-This is useful for plotting the taxonomic composition of a set of samples, where if would be impractical to plot more than a small number of taxa.
+Takes a table of taxa, or OTUs with taxonomic information e.g. a "Phylum"
+column, and collapses the taxa of a specified rank which are not in the
+top n taxa for that rank. This is useful for plotting the taxonomic
+composition of a set of samples, where if would be impractical to plot
+more than a small number of taxa.
 
 The most abundant taxa are determined with the following process:
 
-1. Relative abundances of taxa at the specified rank are summed within each sample;
-2. The mean relative abundance of each taxon across all samples (including samples where the relative abundance is 0) is calculated;
+1. Relative abundances of taxa at the specified rank are summed within
+each sample;
+2. The mean relative abundance of each taxon across all samples (including
+samples where the relative abundance is 0) is calculated;
 3. The top n(ish) taxa, excluding unclassified taxa, are selected.
 }
 

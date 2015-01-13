@@ -1,4 +1,5 @@
-#' @title Add a lineage discription to an OTU @export
+#' @title Add lineage descriptions to an OTU table
+#' @export
 #'
 #' @description Takes a data frame with columns "OTU", "Kingdom", "Phylum",
 #' "Class" etc. and constructs a human-readable lineage description.  It will
@@ -6,7 +7,8 @@
 #' additional "Description" column.
 #'
 #' @param OTUTable data frame with at least an "OTU" column and at least one
-#' taxonomic rank column @param add_OTU add the OTU name to the description
+#' taxonomic rank column 
+#' @param add_OTU add the OTU name in parentheses after the description
 #' @param italicise_binomials if set to "markdown" or "md", will wrap
 #' binomials in asterisks so they appear italicised in markdown output. If
 #' set to "escaped_latex", will wrap binomials in escaped "\textit{}"s.
@@ -60,12 +62,13 @@ add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomial
 #' @title Identify the deepest rank for which there is taxonomic information
 #' @export
 #'
-#' @description
-#' Takes a row from a data frame with columns "OTU" and at least one taxonomic rank, and returns the name of the deepest rank with taxonomic information.
+#' @description Takes a row from a data frame with columns "OTU" and at least
+#' one taxonomic rank, and returns the name of the deepest rank with
+#' taxonomic information.
 #'
-#' @param OTU row from a data frame with columns "OTU" and at least one taxonomic rank
+#' @param OTU row from a data frame with columns "OTU" and at least one
+#' taxonomic rank
 #' @param Ranks vector with names of ranks to look for, in order
-#'
 deepest.rank <- function(OTU, Ranks = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")) {
   Rank <- Ranks[length(Ranks)]
   if (! Rank %in% names(OTU) || is.blank(OTU[Rank])) {
@@ -79,7 +82,7 @@ deepest.rank <- function(OTU, Ranks = c("Kingdom", "Phylum", "Class", "Order", "
   }
 }
 
-#Function to check if a taxon is functionally blank
+#' @title Check if a taxon is functionally blank
 #' @keywords internal
 is.blank <- function(Taxon) {
   if (is.na(Taxon)) {

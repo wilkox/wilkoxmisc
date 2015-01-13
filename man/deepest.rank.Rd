@@ -8,11 +8,14 @@ deepest.rank(OTU, Ranks = c("Kingdom", "Phylum", "Class", "Order", "Family",
   "Genus", "Species"))
 }
 \arguments{
-\item{OTU}{row from a data frame with columns "OTU" and at least one taxonomic rank}
+\item{OTU}{row from a data frame with columns "OTU" and at least one
+taxonomic rank}
 
 \item{Ranks}{vector with names of ranks to look for, in order}
 }
 \description{
-Takes a row from a data frame with columns "OTU" and at least one taxonomic rank, and returns the name of the deepest rank with taxonomic information.
+Takes a row from a data frame with columns "OTU" and at least
+one taxonomic rank, and returns the name of the deepest rank with
+taxonomic information.
 }
 
