@@ -11,7 +11,7 @@ theme_wilkox <- function() {
     axis.ticks.length = unit(0.5, "mm"),
     axis.title.x = element_text(vjust = 0, size = 10),
     axis.title.y = element_text(vjust = 1, angle = 90, size = 10),
-    axis.text = element_text(size = 8, family = "Helvetica", face = "bold"),
+    axis.text = element_text(size = 5, family = "Helvetica", face = "bold.italic"),
     legend.background = element_blank(),
     legend.key = element_blank(),
     legend.text = element_text(lineheight = 4, size = 8, family = "Helvetica"),
