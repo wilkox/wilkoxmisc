@@ -18,7 +18,7 @@ binomials in asterisks so they appear italicised in markdown output. If
 set to "escaped_latex", will wrap binomials in escaped "\textit{}"s.}
 }
 \description{
-Takes a data frame with columns "OTU", "Kingdom", "Phylum",
+Takes a data frame with columns "OTU", "Domain", "Phylum",
 "Class" etc. and constructs a human-readable lineage description.  It will
 try to use the binomial if possible.  Returns the data frame, with an
 additional "Description" column.

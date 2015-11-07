@@ -4,7 +4,7 @@
 \alias{deepest.rank}
 \title{Identify the deepest rank for which there is taxonomic information}
 \usage{
-deepest.rank(OTU, Ranks = c("Kingdom", "Phylum", "Class", "Order", "Family",
+deepest.rank(OTU, Ranks = c("Domain", "Phylum", "Class", "Order", "Family",
   "Genus", "Species"))
 }
 \arguments{

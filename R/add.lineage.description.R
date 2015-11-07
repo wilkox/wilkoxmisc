@@ -1,7 +1,7 @@
 #' @title Add lineage descriptions to an OTU table
 #' @export
 #'
-#' @description Takes a data frame with columns "OTU", "Kingdom", "Phylum",
+#' @description Takes a data frame with columns "OTU", "Domain", "Phylum",
 #' "Class" etc. and constructs a human-readable lineage description.  It will
 #' try to use the binomial if possible.  Returns the data frame, with an
 #' additional "Description" column.
@@ -69,7 +69,7 @@ add.lineage.description <- function(OTUTable, add_OTU = TRUE, italicise_binomial
 #' @param OTU row from a data frame with columns "OTU" and at least one
 #' taxonomic rank
 #' @param Ranks vector with names of ranks to look for, in order
-deepest.rank <- function(OTU, Ranks = c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")) {
+deepest.rank <- function(OTU, Ranks = c("Domain", "Phylum", "Class", "Order", "Family", "Genus", "Species")) {
   Rank <- Ranks[length(Ranks)]
   if (! Rank %in% names(OTU) || is.blank(OTU[Rank])) {
     if (length(Ranks) == 1) {
