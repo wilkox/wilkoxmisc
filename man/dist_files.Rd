@@ -2,12 +2,15 @@
 % Please edit documentation in R/dist_files.R
 \name{read.dist}
 \alias{read.dist}
+\alias{read.dist.tbl}
 \alias{write.dist}
 \title{Read and write dist objects to file}
 \usage{
 read.dist(file, ...)
 
 write.dist(dist, file, ...)
+
+read.dist.tbl(Filename, Row, Column, Value)
 }
 \arguments{
 \item{file}{path for reading or writing.}
@@ -17,7 +20,8 @@ write.dist(dist, file, ...)
 \item{dist}{object of type "dist" to write.}
 }
 \description{
-Read or write an object of type "dist" from/to file.
+Read or write an object of type "dist" from/to file. read.dist returns a
+'dist' object, read.dist.tbl returns a melted tbl.
 }
 \seealso{
 dist

@@ -1,17 +1,18 @@
 Package: wilkoxmisc
 Type: Package
 Title: Wilkox miscellaneous
-Version: 0.1
-Date: 2014-06-20
-Author: David Wilkins <david@wilkox.org>
-Maintainer: David Wilkins <david@wilkox.org>
-Description: Personal library of miscellanous helper functions, mostly for
+Version: 0.2
+Date: 2015-11-29
+Author: David Wilkins <contact@wilkox.org>
+Maintainer: David Wilkins <contact@wilkox.org>
+Description: Personal library of miscellaneous helper functions, mostly for
     high-throughput sequencing studies in microbial ecology.
 Depends:
     plyr (>= 1.3),
-    data.table,
     ggplot2,
     grid,
     knitr,
-    reshape2
+    reshape2,
+    dplyr,
+    tidyr
 License: GPL version 3 or newer

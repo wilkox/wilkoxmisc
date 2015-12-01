@@ -2,12 +2,9 @@
 % Please edit documentation in R/add.relative.abundance.R
 \name{add.relative.abundance}
 \alias{add.relative.abundance}
-\alias{add.relative.abundance.dt}
 \title{Add relative abundance to an OTU table}
 \usage{
 add.relative.abundance(OTUTable, silent = TRUE)
-
-add.relative.abundance.dt(OTUTable)
 }
 \arguments{
 \item{OTUTable}{the OTU table, which must be a tidy data frame or data
@@ -20,8 +17,5 @@ Takes an OTU table in tidy format, i.e. with at least "Sample", "OTU" and
 "Count" columns. Appends a "RelativeAbundance" column containing the
 relative abundance (expressed as a percentage) of each OTU within each
 sample.
-
-"add.relative.abundance.dt" is significantly faster if the OTU table is in
-a data table.
 }
 
