@@ -87,3 +87,9 @@ collapse_taxon_table <- function(
   # Return
   return(TaxonTable)
 }
+
+#' @rdname collapse_taxon_table
+#' @export
+collapse.taxon.table <- function(...) {
+  warning("collapse.taxon.table is deprecated; use collapse_taxon_table instead")
+}

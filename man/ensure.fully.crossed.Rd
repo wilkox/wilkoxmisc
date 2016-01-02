@@ -4,24 +4,9 @@
 \alias{ensure.fully.crossed}
 \title{Ensure a tidy data frame is fully crossed}
 \usage{
-ensure.fully.crossed(Data, id.vars, variable.var, value.var, fill = 0)
-}
-\arguments{
-\item{Data}{a data frame in tidy format}
-
-\item{id.vars}{names of columns in Data representing the ID variables (i.e. the
-variable or variables which represent a single observation; the left hand side
-of the crossed matrix)}
-
-\item{variable.var}{name of column in Data containing variable names (i.e. the column
-names of the crossed matrix)}
-
-\item{value.var}{name of column in Data containing the values}
-
-\item{fill}{(optional) fill for missing values, defaults to 0}
+ensure.fully.crossed(...)
 }
 \description{
-Takes a data frame in tidy format, and ensures it represents a fully crossed table
-with respect to selected variables.
+This function is deprecated; use expand() from the tidyr package instead.
 }
 
