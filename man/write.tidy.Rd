@@ -2,12 +2,12 @@
 % Please edit documentation in R/write_tidy.R
 \name{read.tidy}
 \alias{read.tidy}
-\title{(DEPRECATED) Read a data frame from tsv}
+\title{(DEPRECATED) Write a data frame to tsv}
 \usage{
 read.tidy(...)
 }
 \description{
-read.tidy() is deprecated; use readr::read_tsv() instead
+write.tidy() is deprecated; use write_tidy() instead
 }
 \seealso{
 Other tidy_files: \code{\link{read.tidy}};

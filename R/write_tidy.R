@@ -18,7 +18,7 @@ write_tidy <- function (data, file, ...) {
   write.table(data, file, quote = FALSE, sep = "\t", row.names = FALSE, ...)
 }
 
-#' @title (DEPRECATED) Write a data frame to tsv
+#' @title (DEPRECATED) Read a data frame from tsv
 #' @rdname read.tidy
 #' @family tidy_files
 #' @export
@@ -27,4 +27,15 @@ write_tidy <- function (data, file, ...) {
 #' read.tidy() is deprecated; use readr::read_tsv() instead
 read.tidy <- function(...) {
   warning("read.tidy() is deprecated; use readr::read_tsv() instead")
+}
+
+#' @title (DEPRECATED) Write a data frame to tsv
+#' @rdname write.tidy
+#' @family tidy_files
+#' @export
+#'
+#' @description 
+#' write.tidy() is deprecated; use write_tidy() instead
+read.tidy <- function(...) {
+  warning("write.tidy() is deprecated; use write_tidy() instead")
 }
