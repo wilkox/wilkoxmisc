@@ -21,6 +21,6 @@ wrapper for 'write.table' with arguments set for tidy-formatted files.
 readr::read_tsv
 
 Other tidy_files: \code{\link{read.tidy}};
-  \code{\link{read.tidy}}
+  \code{\link{write.tidy}}
 }
 

@@ -36,6 +36,6 @@ read.tidy <- function(...) {
 #'
 #' @description 
 #' write.tidy() is deprecated; use write_tidy() instead
-read.tidy <- function(...) {
+write.tidy <- function(...) {
   warning("write.tidy() is deprecated; use write_tidy() instead")
 }

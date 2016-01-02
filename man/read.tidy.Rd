@@ -10,7 +10,7 @@ read.tidy(...)
 read.tidy() is deprecated; use readr::read_tsv() instead
 }
 \seealso{
-Other tidy_files: \code{\link{read.tidy}};
+Other tidy_files: \code{\link{write.tidy}};
   \code{\link{write_tidy}}
 }
 
