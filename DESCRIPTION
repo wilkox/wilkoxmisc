@@ -13,5 +13,6 @@ Depends:
     tidyr,
     readr,
     dplyr,
+    stringr,
 License: GPL version 3 or newer
 Suggests: testthat
