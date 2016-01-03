@@ -12,6 +12,7 @@
 #' 'Count' columns
 add_relative_abundance <- function(OTUTable) {
   OTUTable %>%
+    mutate(Sample = factor(Sample)) %>%
     group_by(Sample) %>%
     mutate(RelativeAbundance = (100 * Count) / sum(Count)) %>%
     ungroup() %>%
