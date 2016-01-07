@@ -9,7 +9,7 @@ theme_wilkox <- function() {
     panel.border = element_blank(),
     axis.line = element_line(lineend = "square"),
     axis.ticks.length = unit(0.5, "mm"),
-    axis.title = element_text(size = 12),
+    axis.title = element_text(size = 8, face = "bold"),
     axis.text = element_text(
       size = 8,
       family = "Helvetica",
