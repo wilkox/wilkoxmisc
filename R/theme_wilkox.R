@@ -9,14 +9,12 @@ theme_wilkox <- function() {
     panel.border = element_blank(),
     axis.line = element_line(lineend = "square"),
     axis.ticks.length = unit(0.5, "mm"),
-    axis.title = element_text(size = 8, face = "bold"),
+    axis.title = element_text(size = 10, face = "bold"),
     axis.text = element_text(
       size = 8,
       family = "Helvetica",
       lineheight = 10
     ),
-    legend.background = element_blank(),
-    legend.key = element_blank(),
     legend.text = element_text(
       lineheight = 4,
       size = 8,
@@ -28,8 +26,7 @@ theme_wilkox <- function() {
       family = "Helvetica",
       face = "bold"
     ),
-    legend.margin = unit(-6, "mm"),
-    strip.text = element_text(face = "italic"),
+    strip.text = element_text(size = 8, face = "italic"),
     strip.background = element_blank()
   )
 }
