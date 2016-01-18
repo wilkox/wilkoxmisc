@@ -22,7 +22,7 @@ theme_wilkox <- function() {
     ),
     legend.title = element_text(
       lineheight = 4,
-      size = 8,
+      size = 10,
       family = "Helvetica",
       face = "bold"
     ),
