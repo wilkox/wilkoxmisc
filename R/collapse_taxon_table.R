@@ -77,9 +77,6 @@ collapse_taxon_table <- function(
     group_by_("Sample", Rank) %>%
     summarise(RelativeAbundance = sum(RelativeAbundance))
 
-  # Move "Minor/Unclassified" to the end 
-  TaxonTable[[Rank]] <- move.to.end(TaxonTable[[Rank]], "Minor/Unclassified")
-
   # Ungroup
   TaxonTable <- TaxonTable %>%
     ungroup()
