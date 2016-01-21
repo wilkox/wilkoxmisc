@@ -32,7 +32,7 @@ rowwise_add_lineage_description <- function(
 ) {
 
   # If species exists, return binomial
-  if (! is.blank(Row["Species"])) {
+  if (! is_blank(Row["Species"])) {
     Row$Description <- paste(
       as.character(Row$Genus),
       as.character(Row$Species)
@@ -97,7 +97,7 @@ deepest_rank <- function(
   )
 ) {
   Rank <- Ranks[length(Ranks)]
-  if (! Rank %in% names(OTU) || is.blank(OTU[Rank])) {
+  if (! Rank %in% names(OTU) || is_blank(OTU[Rank])) {
     if (length(Ranks) == 1) {
       return(NA)
     } else {
