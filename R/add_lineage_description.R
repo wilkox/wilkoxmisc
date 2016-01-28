@@ -13,110 +13,108 @@
 #' set to 'latex', will wrap binomials in escaped 'textit' tags.
 add_lineage_description <- function(
   otutable,
-  add_otu = true,
+  add_otu = TRUE,
   italicise_binomials = "none"
 ) {
-  OTUTable %>% 
-    rowwise() %>% 
-    rowwise_add_lineage_description(add_OTU, italicise_binomials) %>%
-    as.tbl() %>%
-    return()
+
+  Descriptions <- otutable %>%
+    select(OTU, Domain, Phylum, Class, Order, Family, Genus, Species) %>%
+    rowwise() %>%
+    mutate(DeepestRank = deepest_rank(unlist(.)))
+  return(OTUTable)
 }
 
 #' @title Add lineage description to a row
 #' @keywords internal
-rowwise_add_lineage_description <- function(
+lineage_description_from_row <- function(
   Row,
-  add_OTU = TRUE,
-  italicise_binomials = "none"
+  add_otu,
+  italicise_binomials
 ) {
 
-  # If species exists, return binomial
-  if (! is_blank(Row["Species"])) {
-    Row$Description <- paste(
-      as.character(Row$Genus),
-      as.character(Row$Species)
-    )
-    if (italicise_binomials %in% c("markdown","md")) {
-      Row$Description <- paste0("*", Row$Description, "*")
-    } else if (italicise_binomials == "latex") {
-      Row$Description <- paste0("\\textit{", Row$Description, "}")
-    }
-    if (add_OTU) {
-      Row$Description <- paste0(Row$Description, " (", Row$OTU, ")")
-    }
-    return(Row)
-  }
+  Row <- unlist(Row)
 
-  # Identify the deepest rank for which there is taxonomic information
-  DeepestRank <- deepest_rank(Row)
-
-  # Return deepest rank if there is one, blank if not
-  if (! is_blank(DeepestRank)) {
-    Taxon <- Row[[DeepestRank]]
-    if (DeepestRank == "Genus") {
-      if (italicise_binomials %in% c("markdown", "md")) {
-        Taxon <- paste0("*", Taxon, "*")
-      } else if (italicise_binomials == "latex") {
-        Taxon <- paste0("\\textit{", Taxon, "}")
-      }
-    }
-    Row$Description <- paste0(DeepestRank, ": ", Taxon)
-    if (add_OTU) {
-      Row$Description <- paste0(Row$Description, " (", Row$OTU, ")")
-    }
-  } else {
-    Row$Description <- "Unknown" 
-    if (add_OTU) {
-      Row$Description <- paste0(Row$Description, " (", Row$OTU, ")")
-    }
-  }
-  return(Row)
-}
-
-#' @title Identify the deepest rank for which there is taxonomic information
-#' @export
-#'
-#' @description Takes a row from a data frame with columns "OTU" and at least
-#' one taxonomic rank, and returns the name of the deepest rank with
-#' taxonomic information.
-#'
-#' @param OTU row from a data frame with columns "OTU" and at least one
-#' taxonomic rank
-#' @param Ranks vector with names of ranks to look for, in order
-deepest_rank <- function(
-  OTU,
-  Ranks = c(
-    "Domain",
-    "Phylum",
-    "Class",
-    "Order",
-    "Family",
-    "Genus",
-    "Species"
+  # Get the deepest rank available for this row
+  DeepestRank <- deepest_rank(
+    Row[c(
+      "OTU",
+      "Domain",
+      "Phylum",
+      "Class",
+      "Order",
+      "Family",
+      "Genus",
+      "Species"
+    )] %>%
+      unlist()
   )
-) {
-  Rank <- Ranks[length(Ranks)]
-  if (! Rank %in% names(OTU) || is_blank(OTU[Rank])) {
-    if (length(Ranks) == 1) {
-      return(NA)
-    } else {
-      return(deepest.rank(Ranks[1:length(Ranks) - 1], OTU))
+
+  # If the species is available, add binomial
+  if (DeepestRank == "Species") {
+    Description <- paste0(Row$Genus, " ", Row$Species)
+    
+    # Italicise binomial if requested
+    if (italicise_binomials %in% c("markdown","md")) {
+       Description <- paste0("*", Description, "*")
+    } else if (italicise_binomials == "latex") {
+      Description <- paste0("\\textit{", Description, "}")
     }
+
+  # If no rank is available, it's 'Unclassified'
+  } else if (is.na(DeepestRank)) {
+    Description <- "Unclassified"
+
+  # Otherwise, name the rank
   } else {
-    return(Rank)
+    Description <- paste0(DeepestRank, ": ", Row[DeepestRank])
+  }
+
+  # Add OTU if requested
+  if (add_otu) {
+    Description <- paste0(Description, " (", Row["OTU"], ")")
+  }
+
+  # Return description
+  return(Description)
+}
+
+#' @title Get the deepest rank from a list of ranks
+#' @keywords internal
+deepest_rank <- function(Row) {
+
+  # If the last rank is blank
+  if (is_blank(Row[length(Row)])) {
+
+    # If there are no ranks left other than OTU, return NA
+    if (length(Row) == 2) {
+      return(NA)
+    
+    # Otherwise, keep looking
+    } else {
+      return(deepest_rank(Row[1:(length(Row) - 1)]))
+    }
+
+  # If the last rank is not blank, it is the deepest rank
+  } else {
+    return(names(Row)[length(Row)])
   }
 }
 
-#' @title Check if a taxon is functionally blank
+#' @title Is a rank blank?
 #' @keywords internal
-is_blank <- function(Taxon) {
-  if (is.na(Taxon)) {
+is_blank <- function(Rank) {
+
+  # Is it NA? If so, blank
+  if (is.na(Rank)) {
     return(TRUE)
-  } else if (Taxon == "") {
+
+  # Is the rank on the list of 'blank' terms? If so, blank
+  } else if (Rank %in% c("", "Unclassified")) {
     return(TRUE)
+
+  # Otherwise, it's not blank
   } else {
     return(FALSE)
   }
-}
 
+}

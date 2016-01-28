@@ -34,52 +34,41 @@ collapse_taxon_table <- function(
   # Prepare taxon table
   message("Preparing taxon table...")
   TaxonTable <- TaxonTable %>%
+    # Rename rank to "Rank", for ease
+    rename_("Rank" = Rank) %>%
     # Collapse relative abundance by taxon and group
-    select_("Sample", Rank, "RelativeAbundance") %>%
-    group_by_("Sample", Rank) %>%
+    select(Sample, Rank, RelativeAbundance) %>%
+    group_by(Sample, Rank) %>%
     summarise(RelativeAbundance = sum(RelativeAbundance)) %>%
-    # Ensure the table is fully crossed
-    complete_("Sample", Rank, fill = list("RelativeAbundance" = 0))
-
-  # Replace unclassified taxa with "Unclassified"
-  # Could not get this to work with mutate_
-  TaxonTable[[Rank]] <- ifelse(
-    TaxonTable[[Rank]] %in% UnclassifiedTerms,
-    "Unclassified",
-    as.character(TaxonTable[[Rank]])
-  ) %>% factor()
+    # Replace unclassified taxa with "Unclassified"
+    mutate(Rank = ifelse(Rank %in% UnclassifiedTerms, "Unclassified", Rank)) %>%
+    ungroup()
 
   # Identify top taxa
   message("Identifying top taxa...")
+  nSamples <- TaxonTable %>% .$Sample %>% unique() %>% length()
   TopTaxa <- TaxonTable %>%
     # Sort by mean relative abundance
-    group_by_(Rank) %>%
-    summarise(MeanRelativeAbundance = mean(RelativeAbundance)) %>%
+    group_by(Rank) %>%
+    summarise(MeanRelativeAbundance = sum(RelativeAbundance) / nSamples) %>%
     arrange(desc(MeanRelativeAbundance)) %>%
     # Omit unclassified taxa
-    filter_(! Rank == "Unclassified") %>%
+    filter(Rank != "Unclassified") %>%
     # Select top taxa
     do(.[1:n-1, ]) %>%
-    select_(Rank) %>%
+    select(Rank) %>%
     unlist()
-
-  # Rename minor and unclassified taxa
-  # Could not get this to work with mutate_
-  TaxonTable[[Rank]] <- ifelse(
-    TaxonTable[[Rank]] %in% TopTaxa,
-    as.character(TaxonTable[[Rank]]),
-    "Minor/Unclassified"
-  ) %>% factor()
 
   # Collapse the table
   message("Collapsing table...")
   TaxonTable <- TaxonTable %>%
-    group_by_("Sample", Rank) %>%
-    summarise(RelativeAbundance = sum(RelativeAbundance))
-
-  # Ungroup
-  TaxonTable <- TaxonTable %>%
-    ungroup()
+    mutate(Rank = ifelse(Rank %in% TopTaxa, Rank, "Minor/Unclassified")) %>%
+    group_by(Sample, Rank) %>%
+    summarise(RelativeAbundance = sum(RelativeAbundance)) %>%
+    ungroup() 
+  
+  # rename_() doesn't work for some reason 
+  names(TaxonTable) <- c("Sample", Rank, "RelativeAbundance")
   
   # Return
   return(TaxonTable)
