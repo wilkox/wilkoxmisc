@@ -7,7 +7,8 @@ theme_wilkox <- function() {
   theme_classic(base_size = 10, base_family = "Helvetica") %+replace% theme(
     panel.grid = element_blank(),
     panel.border = element_blank(),
-    axis.line = element_line(lineend = "square"),
+    axis.line.x = element_line(lineend = "square"),
+    axis.line.y = element_line(lineend = "square"),
     axis.ticks.length = unit(0.5, "mm"),
     axis.title = element_text(size = 10, face = "bold"),
     axis.text = element_text(
