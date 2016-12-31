@@ -7,6 +7,6 @@
 ensure.fully.crossed(...)
 }
 \description{
-This function is deprecated; use expand() from the tidyr package instead.
+`ensure.fully.crossed` is deprecated; use `tidyr::expand` instead.
 }
 

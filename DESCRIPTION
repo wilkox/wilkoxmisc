@@ -1,7 +1,7 @@
 Package: wilkoxmisc
 Type: Package
 Title: Wilkox miscellaneous
-Version: 0.3
+Version: 0.4
 Date: 2016-09-27
 Author: David Wilkins <contact@wilkox.org>
 Maintainer: David Wilkins <contact@wilkox.org>

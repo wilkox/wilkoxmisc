@@ -7,7 +7,7 @@
 write_tidy(...)
 }
 \description{
-write_tidy() is deprecated; use readr::write_tsv() instead
+`write_tidy` is deprecated; use `readr::write_tsv` instead
 }
 \seealso{
 readr::write_tsv

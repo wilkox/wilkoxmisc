@@ -11,15 +11,14 @@ add_relative_abundance(...)
 'Count' columns}
 }
 \description{
-This function is deprecated. Use the `dplyr` package and the following idiom
+`add_relative_abundance` is deprecated. Use the `dplyr` package and the following idiom
 instead:
 
-```
-library(dplyr)
-OTUTable %>%
- group_by(Sample) %>%
- mutate(RelativeAbundance = (100 * Count) / sum(Count) %>%
- ungroup()
+\preformatted{library(dplyr)
+OTUTable \%>\%
+ group_by(Sample) \%>\%
+ mutate(RelativeAbundance = (100 * Count) / sum(Count) \%>\%
+ ungroup}
 }
 \seealso{
 Other add_relative_abundance: \code{\link{add.relative.abundance}}

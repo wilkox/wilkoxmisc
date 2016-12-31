@@ -7,7 +7,7 @@
 write.tidy(...)
 }
 \description{
-write.tidy() is deprecated; use readr::write_tsv() instead
+`write.tidy` is deprecated; use `readr::write_tsv` instead
 }
 \seealso{
 Other tidy_files: \code{\link{read.tidy}},
