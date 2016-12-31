@@ -1,22 +1,23 @@
-#' @title  Add relative abundance to an OTU table
+#' @title  (DEPRECATED) Add relative abundance to an OTU table
 #' @rdname add_relative_abundance
 #' @family add_relative_abundance
 #' @export
 #'
 #' @description
-#' Takes an OTU tbl in tidy format, i.e. with at least 'Sample', 'OTU' and
-#' 'Count' columns. Appends a 'RelativeAbundance' column containing the relative
-#' abundance (expressed as a percentage) of each OTU within each sample.
+#' This function is deprecated. Use the `dplyr` package and the following idiom
+#' instead:
+#'
+#' ```
+#' library(dplyr)
+#' OTUTable %>%
+#'  group_by(Sample) %>%
+#'  mutate(RelativeAbundance = (100 * Count) / sum(Count) %>%
+#'  ungroup()
 #' 
 #' @param OTUTable the OTU table in a tbl, with at least 'Sample', 'OTU' and
 #' 'Count' columns
-add_relative_abundance <- function(OTUTable) {
-  OTUTable %>%
-    mutate(Sample = factor(Sample)) %>%
-    group_by(Sample) %>%
-    mutate(RelativeAbundance = (100 * Count) / sum(Count)) %>%
-    ungroup() %>%
-    return()
+add_relative_abundance <- function(...) {
+  stop("This function is deprecated. See ?add_relative_abundance for details.", call. = FALSE)
 }
 
 #' @title  (DEPRECATED) Add relative abundance to an OTU table
