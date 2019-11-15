@@ -11,6 +11,7 @@ binom <- function(x) {
       stringr::str_detect(.x, "[A-Z]{2}") ~ .x,       # type/strain not italicised
       stringr::str_detect(.x, "^[A-Z0-9]+$") ~ .x,    # type/strain not italicised
       stringr::str_detect(.x, "^unclassified$") ~ .x, # unclassified not italicised
+      stringr::str_detect(.x, "^[oO]ther$") ~ .x,     # other not italicised
       TRUE ~ stringr::str_c("*", .x, "*")             # anything else italicised
     ) %>%
     str_c(collapse = " ") %>%
