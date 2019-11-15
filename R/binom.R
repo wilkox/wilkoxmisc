@@ -8,8 +8,8 @@ binom <- function(x) {
 
   x <- purrr:::map_chr(x, ~ dplyr::case_when( 
       stringr::str_detect(.x, "^sp\\.?$") ~ "sp.",    # either "sp" or "sp." not italicised
-      stringr::str_detect(.x, "[a-z]{2}") ~ .x,       # type/strain not italicised
-      stringr::str_detect(.x, "^[a-z0-9]+$") ~ .x,    # type/strain not italicised
+      stringr::str_detect(.x, "[A-Z]{2}") ~ .x,       # type/strain not italicised
+      stringr::str_detect(.x, "^[A-Z0-9]+$") ~ .x,    # type/strain not italicised
       stringr::str_detect(.x, "^unclassified$") ~ .x, # unclassified not italicised
       TRUE ~ stringr::str_c("*", .x, "*")             # anything else italicised
     ) %>%
