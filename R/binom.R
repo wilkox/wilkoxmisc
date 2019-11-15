@@ -11,7 +11,7 @@ binom <- function(x) {
       stringr::str_detect(.x, "[a-z]{2}") ~ .x,       # type/strain not italicised
       stringr::str_detect(.x, "^[a-z0-9]+$") ~ .x,    # type/strain not italicised
       stringr::str_detect(.x, "^unclassified$") ~ .x, # unclassified not italicised
-      true ~ stringr::str_c("*", .x, "*")             # anything else italicised
+      TRUE ~ stringr::str_c("*", .x, "*")             # anything else italicised
     ) %>%
     str_c(collapse = " ") %>%
     str_replace_all("\\* \\*", " ")
