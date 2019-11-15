@@ -22,4 +22,3 @@ Takes a tbl with columns 'OTU', 'Domain', 'Phylum', 'Class'
 etc. and constructs a human-readable lineage description, the binomial if
 possible. Returns the tbl, with an additional 'Description' column.
 }
-

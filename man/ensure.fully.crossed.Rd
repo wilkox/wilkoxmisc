@@ -9,4 +9,3 @@ ensure.fully.crossed(...)
 \description{
 `ensure.fully.crossed` is deprecated; use `tidyr::expand` instead.
 }
-

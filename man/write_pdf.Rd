@@ -17,4 +17,3 @@ write_pdf(Data, File, ...)
 Write a tbl to pdf using kable (from knitr) and pandoc. Pandoc must be
 installed. xelatex is used as the latex engine.
 }
-

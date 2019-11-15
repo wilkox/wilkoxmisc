@@ -23,4 +23,4 @@ OTUTable \%>\%
 \seealso{
 Other add_relative_abundance: \code{\link{add.relative.abundance}}
 }
-
+\concept{add_relative_abundance}

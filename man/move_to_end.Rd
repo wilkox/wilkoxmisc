@@ -17,4 +17,3 @@ To use `fct_relevel` in a manner similar to `move_to_end`, take advantage of
 \preformatted{library(forcats)
 fct_relevel(Phyla, "Minor/Unclassified", after = Inf)}
 }
-

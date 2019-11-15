@@ -6,5 +6,7 @@
 \usage{
 lineage_description_from_row(Row, add_otu, italicise_binomials)
 }
+\description{
+Add lineage description to a row
+}
 \keyword{internal}
-

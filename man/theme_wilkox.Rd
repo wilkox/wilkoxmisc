@@ -7,4 +7,6 @@
 Plot + theme_wilkox()
 Plot + theme_wilkox() \%+replace\% theme(...)
 }
-
+\description{
+Standardised ggplot2 theme for publications
+}

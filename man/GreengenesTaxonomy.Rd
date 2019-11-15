@@ -11,4 +11,3 @@ A data frame of all lineages in the Greengenes taxonomy.
 McDonald, D., Price, M. N., Goodrich, J., Nawrocki, E. P., DeSantis, T. Z., Probst, A., et al. (2011). An improved Greengenes taxonomy with explicit ranks for ecological and evolutionary analyses of bacteria and archaea. The ISME Journal, 6(3), 610-618. doi:10.1038/ismej.2011.139
 }
 \keyword{data}
-

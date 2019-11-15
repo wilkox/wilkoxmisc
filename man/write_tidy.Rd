@@ -15,4 +15,4 @@ readr::write_tsv
 Other tidy_files: \code{\link{read.tidy}},
   \code{\link{write.tidy}}
 }
-
+\concept{tidy_files}

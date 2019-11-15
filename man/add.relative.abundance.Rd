@@ -6,7 +6,10 @@
 \usage{
 add.relative.abundance(...)
 }
+\description{
+(DEPRECATED) Add relative abundance to an OTU table
+}
 \seealso{
 Other add_relative_abundance: \code{\link{add_relative_abundance}}
 }
-
+\concept{add_relative_abundance}

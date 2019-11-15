@@ -2,8 +2,8 @@
 % Please edit documentation in R/dist_files.R
 \name{read_dist}
 \alias{read_dist}
-\alias{read_dist_tbl}
 \alias{write_dist}
+\alias{read_dist_tbl}
 \title{Read and write dist objects to file}
 \usage{
 read_dist(file, ...)
@@ -26,4 +26,4 @@ Read or write 'dist' objects from and to file. read_dist returns a
 \seealso{
 dist
 }
-
+\concept{dist_files}

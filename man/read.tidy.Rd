@@ -13,4 +13,4 @@ read.tidy(...)
 Other tidy_files: \code{\link{write.tidy}},
   \code{\link{write_tidy}}
 }
-
+\concept{tidy_files}

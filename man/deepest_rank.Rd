@@ -6,5 +6,7 @@
 \usage{
 deepest_rank(Row)
 }
+\description{
+Get the deepest rank from a list of ranks
+}
 \keyword{internal}
-

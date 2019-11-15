@@ -17,4 +17,4 @@ Depends:
 License: GPL version 3 or newer
 Suggests:
     testthat
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.1

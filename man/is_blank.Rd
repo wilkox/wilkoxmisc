@@ -6,5 +6,7 @@
 \usage{
 is_blank(Rank)
 }
+\description{
+Is a rank blank?
+}
 \keyword{internal}
-
