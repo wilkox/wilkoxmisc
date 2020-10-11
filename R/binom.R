@@ -14,6 +14,10 @@ binom <- function(x) {
       return("*Deinococcus-Thermus*")
     }
 
+    if (x[1] == "Viruses" & x[2] == "noname") {
+      return("Viruses")
+    }
+
     if (x[1] == "Candidatus") {
       x <- str_c("*Candidatus* '", str_c(x[-1], collapse = " "), "'")
       return(x)
